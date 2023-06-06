@@ -245,7 +245,7 @@ class data_handler
             }
         }
         num_classes = counter;
-        std::cout << "Number of Classes = " << num_classes << std::endl;
+        std::cout << "\nNumber of Classes = " << num_classes << std::endl;
     };
 
     void count_features( ){ //Count the number of features/data entry.
@@ -288,7 +288,7 @@ class data_handler
         return num_classes;
     }
 
-    void print_map(){
+    void print_map(){  //note that some class actual labels are not printable
         std::map<uint8_t,  int >::iterator it ;
         
         

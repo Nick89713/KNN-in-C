@@ -10,6 +10,10 @@
 #include <random>
 #include <algorithm>
 #include <cmath>
+#include <iterator> 
+#include <string.h>
+#include <tuple>
+
 
 /*
 Objects of class data are used to store images belonging to the MNIST dataset, as vectors (flattened images).

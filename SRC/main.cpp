@@ -1,7 +1,6 @@
-//#include "data.hpp"
-//#include "data_handler.hpp"
+//Compile with: g++ -std=c++17   -Wall -Wextra main.cpp -o main.exe
+//Execute with: ./main.exe
 #include "knn.hpp"
-#include <string.h>
 
 int main(){
 
@@ -34,27 +33,15 @@ int main(){
   
   //create a knn object
   knn *knn_classifier = new knn();
+  std::vector<int> *predictions = new  std::vector<int>();
 
   //set hyperparameters
   knn_classifier->tune(4, dh->get_number_of_classes(), "Euclidean"  );
-  std::cout << "KNN tuned" << std::endl;
-
-
-  //train,test, val data parsed
   knn_classifier->set_training_data(dh->get_training_data());
   knn_classifier->set_testing_data(dh->get_testing_data());
   knn_classifier->set_validation_data(dh->get_validation_data());
-  std::cout << "Training, testing and  validation datasets defined" << std::endl;
-
-  
-  //apply knn
-  std::vector<int> *predictions = new  std::vector<int>();
   predictions = knn_classifier->fit_predict();
-  std::cout << "Classification done" << std::endl;
-
-  //find accuracy
-  double accuracy = knn_classifier->accuracy(predictions);
-  std::cout << "Accuracy = " << accuracy << std::endl;
+  knn_classifier->accuracy(predictions);
 
 }
 

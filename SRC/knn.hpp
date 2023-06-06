@@ -2,9 +2,6 @@
 #define __KNN_HPP
 
 #include "data_handler.hpp"
-#include <iterator> 
-#include <string.h>
-#include <tuple>
 
 /*
 Class that creates a knn classifier.
@@ -57,6 +54,7 @@ class knn{
             K = k;
             number_of_classes = num_classes;
             distance_formula = formula;
+            std::cout << "\nKNN tuned" << std::endl;
         }
 
         
@@ -185,24 +183,25 @@ class knn{
        std::vector<int> *fit_predict(){
             std::vector<int> *predictions = new  std::vector<int>();
 
-            for(int i = 0; i < (int) testing_data->size(); i++){
+            std::cout << "\nClassification: Begin" << std::endl;
+            for(int i = 0; i < (int)testing_data->size(); i++){
                 find_neighbors(testing_data->at(i));
                 predictions->push_back(predict_class());
                 delete neighbors;
-                std::cout << "Testing data point - " << i << " examined" << std::endl;
+                
             }
-
+             std::cout << "Classification: End" << std::endl;
            return predictions;
         };
         
         double accuracy(std::vector<int> *predictions){                     //Compute accuracy = correct_predictions/total number of samples
-            int correct_predictions = 0;
-            for(int i = 0; i < (int) testing_data->size(); i++){
+            double correct_predictions = 0;
+            for(int i = 0; i < (int)testing_data->size(); i++){
                 if(predictions->at(i) == ((int)testing_data->at(i)->get_enumerated_label())){
                     correct_predictions++;
                 }
             }
-
+            std::cout << "\nAccuracy = " << correct_predictions/((int) testing_data->size()) << std::endl;
             return correct_predictions/((int) testing_data->size());
         }
         
